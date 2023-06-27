@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import { connectWallet, getAccount } from "../utils/wallet";
 
 const Navbar = () => {
@@ -6,10 +6,19 @@ const Navbar = () => {
 
   useEffect(() => {
     (async () => {
-      // TODO 5.b - Get the active account
-      setAccount(account);
+      try {
+        const activeAccount = await getAccount();
+        setAccount(activeAccount);
+      } catch (error) {
+        console.error("Error retrieving account:", error);
+      }
     })();
   }, []);
+      // TODO 5.b - Get the active account
+  //     const activeAccount = await getAccount();
+  //     setAccount(activeAccount); 
+  //   })();
+  // }, []);
 
   // TODO 4.a - Complete onConnectWallet function
   const onConnectWallet = async () => {
@@ -26,10 +35,10 @@ const Navbar = () => {
         </a>
         <div className="d-flex">
           {/* TODO 4.b - Call connectWallet function onClick  */}
-          <button className="btn btn-outline-info" onClick={onConnectWallet}>
+          <button onClick={onConnectWallet} className="btn btn-outline-info" >
             {/* TODO 5.a - Show account address if wallet is connected */}
-            {account?account:"Connected Wallet"}
-            {/* Connect Wallet */}
+            {/* {account?account:"Connected Wallet"} */}
+            {account!==""?account:"Connect Wallet "}
           </button>
         </div>
       </div>
