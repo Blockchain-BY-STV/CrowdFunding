@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 
 //operation
-import { buyTicketOperation } from "./utils/operation";
+import { buyTicketOperation, endGameOperation } from "./utils/operation";
 
 //tzkt
 import { fetchStorage } from "./utils/tzkt";
@@ -38,7 +38,16 @@ const App = () => {
   };
 
   // TODO 11.a - Complete onEndGame function
-  const onEndGame = async () => {};
+  const onEndGame = async () => {
+    try{
+      setLoading(true);
+      await endGameOperation();
+      alert("GAME ENDED!");
+    }catch(err){
+      alert("Failed to end!");
+    }
+    setLoading(false);
+  };
 
   return (
     <div className="h-100">
@@ -54,10 +63,10 @@ const App = () => {
             {loading===true ?"Loading..":"Buy Ticket"}
           </button>
         ) : (
-          <button className="btn btn-success btn-lg">
+          <button onClick={onEndGame} className="btn btn-success btn-lg">
             {/* TODO 11.b - Call onEndGame on click */}
             {/* TODO 11.c - Show "loading..." when buying operation is pending */}
-            End Game
+            {loading===true ?"Loading..":"End Game"}
           </button>
         )}
         {/* List of Players */}
