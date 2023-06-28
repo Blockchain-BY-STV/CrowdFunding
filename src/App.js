@@ -10,40 +10,25 @@ import { ContributeFundOperation, endFund} from "./utils/operation";
 import { fetchStorage } from "./utils/tzkt";
 
 const App = () => {
-  // Players holding lottery tickets
-  // const [players, setPlayers] = useState([]);
-  // const [tickets, setTickets] = useState(3);
   const [loading, setLoading] = useState(false);
   const [total_fund,setAmount]=useState(0);
-  const [goal,setGoal]=useState(100);
+  // const [goal,setGoal]=useState(100);
   const [contributor, setContributors]=useState([]);
+  const [currency, setCurrency] = useState(0); 
+  const [loadingContribution, setLoadingContribution] = useState(false);
 
   // Set players and tickets remaining
   useEffect(() => {
     // TODO 9 - Fetch players and tickets remaining from storage
     (async () => {
       const storage=await fetchStorage();
-      // setPlayers(Object.values(storage.players));
       setContributors(Object.values(storage.contributors));
-      // setTickets(storage.tickets_available);
       setAmount(storage.total_amount);
-      setGoal(storage.goal);
+      // setGoal(storage.goal);
     })();
   }, []);
 
-  // TODO 7.a - Complete onBuyTicket function
-  // const onBuyTicket = async () => {
-  //   try{
-  //     setLoading(true);
-  //     await buyTicketOperation();;
-  //     alert("Transaction confirmed");
-  //   }catch(err){
-  //     alert("Transaction failed");
-  //   }
-  //   setLoading(false);
-  // };
 
-  // TODO 11.a - Complete onEndGame function
   const onEndGame = async () => {
     try{
       setLoading(true);
@@ -57,14 +42,26 @@ const App = () => {
   };
 const onContribute=async()=>{
   try{
-    setLoading(true);
-    await ContributeFundOperation(10);
+    // setLoading(true);
+    setLoadingContribution(true);
+    // await ContributeFundOperation();
+    await ContributeFundOperation(currency);
     alert("CONTRIBUTED!");
   }catch(err){
     alert("Failed to contribute!");
   }
-  setLoading(false);
+  // setLoading(false);
+  setLoadingContribution(false);
 }
+
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`The amount you entered: ${currency}`)
+  }
+
+
   return (
     <div className="h-100">
       <Navbar />
@@ -72,20 +69,35 @@ const onContribute=async()=>{
         {/* Ticket remaining display */}
         {/* <div className="py-1">Tickets remaining: {tickets}</div> */}
         <div className="py-1">FUND ACHIEVED: {total_fund}</div>
+
+        <form onSubmit={handleSubmit}>
+      <label>Enter the amount you want to contribute in standard currency:
+        <input 
+          type="number" 
+          value={currency}
+          onChange={(e) => setCurrency(e.target.value)}
+        />
+      </label>
+      {/* <input type="submit" /> */}
+      <input type="submit" value="Update amount" />
+    </form>
+
+    {/* <MyForm /> Include the MyForm component here */}
         {/* Action Buttons */}
-        {total_fund <= goal ? (
+        {/* {total_fund <= goal ? ( */}
           <button onClick={onContribute} className="btn btn-primary btn-lg">
             {/* TODO 7.b - Call onBuyTicket on click */}
             {/* TODO 7.c - Show "loading..." when buying operation is pending */}
-            {loading===true ?"Loading..":"Contribute"}
+            {/* {loading===true ?"Loading..":"Contribute"} */}
+            {loadingContribution ? "Loading..." : "Contribute"}
           </button>
-        ) : (
-          <button onClick={onEndGame} className="btn btn-success btn-lg">
+        {/* ) : ( */}
+          {/* <button onClick={onEndGame} className="btn btn-success btn-lg">
             {/* TODO 11.b - Call onEndGame on click */}
             {/* TODO 11.c - Show "loading..." when buying operation is pending */}
-            {loading===true ?"Loading..":"End Game"}
-          </button>
-        )}
+            {/* {loading===true ?"Loading..":"End Game"} */}
+          {/* </button> */}
+        {/* )} */}
         {/* List of Players */}
         <div className="mt-2">
           {contributor.map((cont, index) => (
@@ -98,5 +110,6 @@ const onContribute=async()=>{
     </div>
   );
 };
+
 
 export default App;

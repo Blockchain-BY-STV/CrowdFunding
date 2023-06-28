@@ -14,13 +14,7 @@ const Navbar = () => {
       }
     })();
   }, []);
-      // TODO 5.b - Get the active account
-  //     const activeAccount = await getAccount();
-  //     setAccount(activeAccount); 
-  //   })();
-  // }, []);
 
-  // TODO 4.a - Complete onConnectWallet function
   const onConnectWallet = async () => {
     await connectWallet();
     const account=await getAccount();
@@ -34,10 +28,8 @@ const Navbar = () => {
           Tezos CrowdFunding
         </a>
         <div className="d-flex">
-          {/* TODO 4.b - Call connectWallet function onClick  */}
           <button onClick={onConnectWallet} className="btn btn-outline-info" >
-            {/* TODO 5.a - Show account address if wallet is connected */}
-            {/* {account?account:"Connected Wallet"} */}
+           
             {account!==""?account:"Connect Wallet "}
           </button>
         </div>
