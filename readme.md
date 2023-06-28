@@ -1,6 +1,7 @@
 # Getting Started with CrownFunding App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Deployed at : https://crowd-funding-by-stv.vercel.app/
 
 ## Available Scripts
 
