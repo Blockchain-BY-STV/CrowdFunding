@@ -1,3 +1,6 @@
+# PRESENTATION LINK
+https://www.canva.com/design/DAFnG10_tgw/qlNFbGp9nwfSeNOej-bg5g/edit?utm_content=DAFnG10_tgw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
 # Getting Started with CrownFunding App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
