@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
-
+import Particles from "react-particles";
+import { loadFull } from "tsparticles";
+import { particlesConfig } from "./particles.js";
 // Components
 import Navbar from "./components/Navbar";
+import styles from "./index.css";
 
 //operation
 import { ContributeFundOperation, endFund} from "./utils/operation";
@@ -17,6 +20,15 @@ const App = () => {
   const [currency, setCurrency] = useState(0); 
   const [loadingContribution, setLoadingContribution] = useState(false);
 
+
+  
+  const particlesInit = async (main) => {
+    await loadFull(main);
+  };
+  
+  const particlesLoaded = (container) => {
+    console.log(container);
+  };
   // Set players and tickets remaining
   useEffect(() => {
     // TODO 9 - Fetch players and tickets remaining from storage
@@ -68,7 +80,7 @@ const onContribute=async()=>{
       <div className="d-flex flex-column justify-content-center align-items-center h-100">
         {/* Ticket remaining display */}
         {/* <div className="py-1">Tickets remaining: {tickets}</div> */}
-        <div className="py-1">FUND ACHIEVED: {total_fund}</div>
+        <div className={styles.py-1}>FUND ACHIEVED: {total_fund}</div>
 
         <form onSubmit={handleSubmit}>
       <label>Enter the amount you want to contribute in standard currency:
@@ -105,6 +117,14 @@ const onContribute=async()=>{
               <b>Contributor {index}:</b> {cont}
             </div>
           ))}
+          <section>
+          <Particles
+            id="tsparticles"
+            init={particlesInit}
+            options={particlesConfig}
+            loaded={particlesLoaded}
+          />
+        </section>
         </div>
       </div>
     </div>
