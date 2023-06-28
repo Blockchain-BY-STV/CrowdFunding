@@ -73,7 +73,7 @@ const App = () => {
   return (
     <div className="h-100">
       <Navbar />
-      <h1>Crowdfunding Daap</h1>
+      {/* <h1>Crowdfunding Daap</h1> */}
       <div className="d-flex flex-column justify-content-center align-items-center h-100">
         {/* Ticket remaining display */}
         {/* <div className="py-1">Tickets remaining: {tickets}</div> */}

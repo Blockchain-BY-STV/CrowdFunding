@@ -1,13 +1,13 @@
 #root,
 html,
 body {
-  /* margin: 0;
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(90deg, #96afb1 0%, #875c81 100%);
+  /* background: linear-gradient(90deg, #96afb1 0%, #875c81 100%); */
   font-family: "Sansita Swashed", cursive;
   height: 100%;
   padding: 0;
@@ -47,5 +47,5 @@ h1 {
   color: rgb(12, 12, 12);
 }
 .Navbar {
-    background: #3f0137; */
+    background: #3f0137; 
 }
