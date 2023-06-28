@@ -1,4 +1,4 @@
-import React,{ useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connectWallet, getAccount } from "../utils/wallet";
 
 const Navbar = () => {
@@ -17,7 +17,7 @@ const Navbar = () => {
 
   const onConnectWallet = async () => {
     await connectWallet();
-    const account=await getAccount();
+    const account = await getAccount();
     setAccount(account);
   };
 
@@ -28,9 +28,8 @@ const Navbar = () => {
           Tezos CrowdFunding
         </a>
         <div className="d-flex">
-          <button onClick={onConnectWallet} className="btn btn-outline-info" >
-           
-            {account!==""?account:"Connect Wallet "}
+          <button onClick={onConnectWallet} className="btn btn-outline-info">
+            {account !== "" ? account : "Connect Wallet "}
           </button>
         </div>
       </div>

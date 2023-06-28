@@ -7,17 +7,17 @@ import Navbar from "./components/Navbar";
 import styles from "./index.css";
 
 //operation
-import { ContributeFundOperation, endFund} from "./utils/operation";
+import { ContributeFundOperation, endFund } from "./utils/operation";
 
 //tzkt
 import { fetchStorage } from "./utils/tzkt";
 
 const App = () => {
   const [loading, setLoading] = useState(false);
-  const [total_fund,setAmount]=useState(0);
+  const [total_fund, setAmount] = useState(0);
   // const [goal,setGoal]=useState(100);
-  const [contributor, setContributors]=useState([]);
-  const [currency, setCurrency] = useState(0); 
+  const [contributor, setContributors] = useState([]);
+  const [currency, setCurrency] = useState(0);
   const [loadingContribution, setLoadingContribution] = useState(false);
 
 
@@ -33,82 +33,80 @@ const App = () => {
   useEffect(() => {
     // TODO 9 - Fetch players and tickets remaining from storage
     (async () => {
-      const storage=await fetchStorage();
+      const storage = await fetchStorage();
       setContributors(Object.values(storage.contributors));
       setAmount(storage.total_amount);
       // setGoal(storage.goal);
     })();
   }, []);
 
-
   const onEndGame = async () => {
-    try{
+    try {
       setLoading(true);
       // await endGameOperation();
       await endFund();
       alert("GAME ENDED!");
-    }catch(err){
+    } catch (err) {
       alert("Failed to end!");
     }
     setLoading(false);
   };
-const onContribute=async()=>{
-  try{
-    // setLoading(true);
-    setLoadingContribution(true);
-    // await ContributeFundOperation();
-    await ContributeFundOperation(currency);
-    alert("CONTRIBUTED!");
-  }catch(err){
-    alert("Failed to contribute!");
-  }
-  // setLoading(false);
-  setLoadingContribution(false);
-}
-
-
+  const onContribute = async () => {
+    try {
+      // setLoading(true);
+      setLoadingContribution(true);
+      // await ContributeFundOperation();
+      await ContributeFundOperation(currency);
+      alert("CONTRIBUTED!");
+    } catch (err) {
+      alert("Failed to contribute!");
+    }
+    // setLoading(false);
+    setLoadingContribution(false);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`The amount you entered: ${currency}`)
-  }
-
+    alert(`The amount you entered: ${currency}`);
+  };
 
   return (
     <div className="h-100">
       <Navbar />
+      <h1>Crowdfunding Daap</h1>
       <div className="d-flex flex-column justify-content-center align-items-center h-100">
         {/* Ticket remaining display */}
         {/* <div className="py-1">Tickets remaining: {tickets}</div> */}
         <div className={styles.py-1}>FUND ACHIEVED: {total_fund}</div>
 
         <form onSubmit={handleSubmit}>
-      <label>Enter the amount you want to contribute in standard currency:
-        <input 
-          type="number" 
-          value={currency}
-          onChange={(e) => setCurrency(e.target.value)}
-        />
-      </label>
-      {/* <input type="submit" /> */}
-      <input type="submit" value="Update amount" />
-    </form>
+          <label>
+            Enter the amount you want to contribute in standard currency:
+            <input
+              type="number"
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value)}
+            />
+          </label>
+          {/* <input type="submit" /> */}
+          <input type="submit" value="Update amount" />
+        </form>
 
-    {/* <MyForm /> Include the MyForm component here */}
+        {/* <MyForm /> Include the MyForm component here */}
         {/* Action Buttons */}
         {/* {total_fund <= goal ? ( */}
-          <button onClick={onContribute} className="btn btn-primary btn-lg">
-            {/* TODO 7.b - Call onBuyTicket on click */}
-            {/* TODO 7.c - Show "loading..." when buying operation is pending */}
-            {/* {loading===true ?"Loading..":"Contribute"} */}
-            {loadingContribution ? "Loading..." : "Contribute"}
-          </button>
+        <button onClick={onContribute} className="btn btn-primary btn-lg">
+          {/* TODO 7.b - Call onBuyTicket on click */}
+          {/* TODO 7.c - Show "loading..." when buying operation is pending */}
+          {/* {loading===true ?"Loading..":"Contribute"} */}
+          {loadingContribution ? "Loading..." : "Contribute"}
+        </button>
         {/* ) : ( */}
-          {/* <button onClick={onEndGame} className="btn btn-success btn-lg">
+        {/* <button onClick={onEndGame} className="btn btn-success btn-lg">
             {/* TODO 11.b - Call onEndGame on click */}
-            {/* TODO 11.c - Show "loading..." when buying operation is pending */}
-            {/* {loading===true ?"Loading..":"End Game"} */}
-          {/* </button> */}
+        {/* TODO 11.c - Show "loading..." when buying operation is pending */}
+        {/* {loading===true ?"Loading..":"End Game"} */}
+        {/* </button> */}
         {/* )} */}
         {/* List of Players */}
         <div className="mt-2">
@@ -130,6 +128,5 @@ const onContribute=async()=>{
     </div>
   );
 };
-
 
 export default App;
