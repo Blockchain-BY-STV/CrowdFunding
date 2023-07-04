@@ -16,7 +16,7 @@ In the project directory, you can run:
 
 ## Smart Contract deployed at SmartPy
 
-Contract Address : KT1Sr4Te8j7uWzrHQAxCduqbDFCY8YLeqwJL
+Contract Address : KT1Fyc9TtYHfUj7AuRbtMKU4hBghVHUxDrqz
 
 RPC URL : https://ghostnet.smartpy.io
 
