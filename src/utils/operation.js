@@ -32,3 +32,18 @@ export const endFund = async () => {
     }
 
 };
+
+
+export const withdrawFund = async () => {
+    try{
+        const contract=await tezos.wallet.at("KT1KJJ5oHXHiAfsfytVaFupEJ1pyaNxQLMz6");
+        const op =await contract.methods.withdraw().send();
+        // await op.confirmation(1);
+        // 1 represents that it waits for atleast 1 block after the operation is confirmed
+    }
+    catch(err)
+    {
+        throw err;
+    }
+
+};
