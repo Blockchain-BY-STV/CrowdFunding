@@ -1,4 +1,13 @@
-# PRESENTATION LINK
+# CrowdFunding DaAp
+## Built By
+Tarang Ahuja
+Sujata Gahlaut
+Vanshika Chandan
+
+
+## Presentation Link
+
+(If above link not working)
 https://www.canva.com/design/DAFnG10_tgw/qlNFbGp9nwfSeNOej-bg5g/edit?utm_content=DAFnG10_tgw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 ## Getting Started with CrownFunding App
